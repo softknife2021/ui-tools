@@ -1,0 +1,28 @@
+{
+  "name": "release-ide-prototype",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Throwaway prototype: Lens-style desktop IDE for a release-engineering platform (mock data).",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "vite build",
+    "start": "electron .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^6.3.0",
+    "electron": "^45.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^8.3.8"
+  },
+  "allowScripts": {
+    "electron@45.3.4": true
+  }
+}

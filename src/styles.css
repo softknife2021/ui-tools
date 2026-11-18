@@ -1,0 +1,90 @@
+:root {
+  --bg: #1e1f22;
+  --panel: #2b2d30;
+  --border: #3c3f41;
+  --text: #dfe1e5;
+  --muted: #8c8f94;
+  --accent: #3574f0;
+  --ok: #5fb865;
+  --warn: #e0a33a;
+  --err: #e5534b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+button { font: inherit; color: inherit; background: #393b40; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+.muted { color: var(--muted); }
+
+.shell {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 220px 1fr 300px;
+  grid-template-rows: 30px 1fr 220px;
+  grid-template-areas:
+    "title title title"
+    "nav center assistant"
+    "logs logs logs";
+  gap: 1px;
+  background: var(--border);
+}
+.titlebar { grid-area: title; background: var(--bg); padding: 6px 12px; color: var(--muted); }
+.navigator { grid-area: nav; }
+.center { grid-area: center; display: grid; grid-template-rows: 1fr 1fr; gap: 1px; min-height: 0; }
+.assistant { grid-area: assistant; display: flex; flex-direction: column; }
+.log-dock { grid-area: logs; display: flex; flex-direction: column; }
+
+.panel { background: var(--panel); overflow: auto; min-height: 0; }
+.panel-title { position: sticky; top: 0; background: var(--panel); padding: 6px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); border-bottom: 1px solid var(--border); }
+.empty { display: flex; align-items: center; justify-content: center; color: var(--muted); }
+
+.tree-group { padding: 8px 10px 4px; color: var(--muted); }
+.tree-item { display: block; width: 100%; text-align: left; background: none; border: none; border-radius: 0; padding: 4px 16px; }
+.tree-item:hover { background: #35373b; }
+.tree-item.active { background: #2e436e; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 5px 10px; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-weight: normal; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: #35373b; }
+tbody tr.selected { background: #2e436e; }
+
+.badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 11px; background: #44474c; }
+.badge-succeeded, .badge-done { background: #2d4a30; color: var(--ok); }
+.badge-running { background: #24395f; color: #7aa7ff; }
+.badge-pending_approval, .badge-waiting { background: #4a3d22; color: var(--warn); }
+.badge-failed, .badge-rolled_back { background: #4d2826; color: var(--err); }
+
+.release-detail { padding: 0 14px 14px; }
+.detail-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
+.detail-header h2 { margin: 0 0 4px; font-size: 16px; }
+.actions { display: flex; gap: 8px; align-items: center; }
+.error { background: #4d2826; color: var(--err); padding: 6px 10px; border-radius: 4px; margin-bottom: 8px; }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+.tabs button { border: none; border-radius: 0; background: none; border-bottom: 2px solid transparent; }
+.tabs button.active { border-bottom-color: var(--accent); }
+
+.pipeline { display: flex; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.stage { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 6px; display: flex; flex-direction: column; gap: 6px; }
+.stage-name { font-weight: 600; text-transform: uppercase; font-size: 11px; }
+.stage-running { border-color: #7aa7ff; }
+.stage-failed { border-color: var(--err); }
+.changes { margin: 0; padding-left: 18px; line-height: 1.8; }
+
+.assistant-body { flex: 1; padding: 10px; }
+.assistant-input { margin: 8px; padding: 6px 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; color: var(--text); }
+
+.log-body { flex: 1; padding: 6px 10px; font-size: 12px; line-height: 1.6; }
+.log-error { color: var(--err); }
+
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; }
+.modal { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; width: 420px; }
+.modal h3 { margin-top: 0; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
